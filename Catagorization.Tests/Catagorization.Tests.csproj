@@ -68,10 +68,21 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CatsControllerTests.cs" />
+    <Compile Include="PetSorterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Catagorization\Catagorization.csproj">
+      <Project>{690AB17A-95FD-496E-986D-2786527D1171}</Project>
+      <Name>Catagorization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PeopleService\PeopleService.csproj">
+      <Project>{A19A9DB3-8AB6-4987-87F9-931D37BD56AE}</Project>
+      <Name>PeopleService</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

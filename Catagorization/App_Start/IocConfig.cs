@@ -1,7 +1,11 @@
-﻿using Autofac;
+﻿
+using Autofac;
 using Autofac.Integration.WebApi;
 using Owin;
 using System.Reflection;
+using Catagorization.Controllers;
+using Configuration;
+using PeopleService.Providers;
 
 namespace Catagorization
 {
@@ -26,12 +30,22 @@ namespace Catagorization
             builder.RegisterApiControllers(assembly);
 
             //Register interfaces and their implementations
-            //TODO: Add implementations
+
+            builder.RegisterType<PetSorter>().As<IPetSorter>();
+
+            RegisterExternalServices(builder);
 
             // Build the container.
             var container = builder.Build();
 
             return container;
+        }
+
+        //Register services from external libraries
+        private static void RegisterExternalServices(ContainerBuilder builder)
+        {
+            builder.RegisterType<Settings>().As<ISettings>();
+            builder.RegisterType<PetOwnerService>().As<IPetOwnerService>();
         }
     }
 }

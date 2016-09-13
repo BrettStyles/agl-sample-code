@@ -105,7 +105,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <ProjectReference Include="..\Configuration\Configuration.csproj">
+      <Project>{4B8527CD-2FE2-4C73-B889-0EB2A6DBF6FC}</Project>
+      <Name>Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PeopleService\PeopleService.csproj">
+      <Project>{A19A9DB3-8AB6-4987-87F9-931D37BD56AE}</Project>
+      <Name>PeopleService</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Net.Http.Formatting">
@@ -127,6 +134,9 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CatsController.cs" />
+    <Compile Include="Controllers\IPetSorter.cs" />
+    <Compile Include="Controllers\PetSorter.cs" />
+    <Compile Include="Domain\Models\PetByOwnerGender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

@@ -3,7 +3,7 @@
 namespace Catagorization.Tests
 {
     [TestFixture]
-    public class CatsControllerTests
+    internal class CatsControllerTests
     {
 
     }
