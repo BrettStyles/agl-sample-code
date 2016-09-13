@@ -21,7 +21,7 @@ namespace Catagorization.Tests
             var sorter = new PetSorter();
 
             //act
-            var actual = sorter.SortByGender(owners).SelectMany(c=>c.Names).ToList();
+            var actual = sorter.SortByGender(owners, PetType.Cat).SelectMany(c=>c.Names).ToList();
 
             //assert
             Assert.Contains(name, actual);
@@ -37,7 +37,7 @@ namespace Catagorization.Tests
             var sorter = new PetSorter();
 
             //act
-            var actual = sorter.SortByGender(owners).SelectMany(c => c.Names).ToList();
+            var actual = sorter.SortByGender(owners, PetType.Cat).SelectMany(c => c.Names).ToList();
 
             //assert
             Assert.IsFalse(actual.Contains(name));
@@ -52,11 +52,29 @@ namespace Catagorization.Tests
             var sorter = new PetSorter();
 
             //act
-            var all = sorter.SortByGender(owners);
-            var filtered = all.Where(p => p.Gender == gender);
+            var all = sorter.SortByGender(owners, PetType.Cat);
+            var count = all.First(p => p.Gender == gender).Names.Count();
 
             //assert
-            Assert.AreEqual(expected, filtered.Count());
+            Assert.AreEqual(expected, count);
+        }
+        
+        [TestCase("Tom",2)]
+        [TestCase("Will",3)]
+        [TestCase("Macy",1)]
+        [TestCase("Babios",0)]
+        public void Does_Sorter_Return_Correct_Order(string name, int index)
+        {
+            //arrange
+            var owners = SetupData();
+            var sorter = new PetSorter();
+
+            //act
+            var all = sorter.SortByGender(owners, PetType.Cat);
+            var names = all.First(p => p.Gender == Gender.Female).Names.ToArray();
+
+            //assert
+            Assert.AreEqual(name, names[index]);
         }
 
         private ICollection<Owner> SetupData()

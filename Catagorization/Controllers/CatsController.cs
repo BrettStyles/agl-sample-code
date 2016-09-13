@@ -24,7 +24,7 @@ namespace Catagorization.Controllers
         {
            var petOwners = await _petOwnerService.GetPetOwnersAsync();
 
-            var sortedPets = _sorter.SortByGender(petOwners);
+            var sortedPets = _sorter.SortByGender(petOwners, PetType.Cat);
 
             return sortedPets;
         }
